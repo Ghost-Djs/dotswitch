@@ -8,7 +8,9 @@ from dotswitch.state import (
     get_current_profile,
     get_default_profile,
     get_last_used_profile,
+    set_current_profile,
     set_default_profile,
+    set_last_used_profile,
 )
 
 VERSION = "0.1.0"
@@ -30,6 +32,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     commands.add_parser("list", help="List registered profiles")
     commands.add_parser("status", help="Show profile state")
+
+    activate_parser = commands.add_parser(
+        "activate",
+        help="Mark a profile as active",
+    )
+    activate_parser.add_argument("profile")
 
     default_parser = commands.add_parser(
         "default",
@@ -96,6 +104,20 @@ def command_default(profile_id: str) -> int:
     return 0
 
 
+def command_activate(profile_id: str) -> int:
+    profiles = load_profiles()
+
+    if profile_id not in profiles:
+        print(f"Unknown profile: {profile_id}", file=sys.stderr)
+        return 1
+
+    set_current_profile(profile_id)
+    set_last_used_profile(profile_id)
+
+    print(f"Active profile set to: {profile_id}")
+    return 0
+
+
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
@@ -105,6 +127,8 @@ def main() -> None:
             exit_code = command_list()
         elif args.command == "status":
             exit_code = command_status()
+        elif args.command == "activate":
+            exit_code = command_activate(args.profile)
         elif args.command == "default":
             exit_code = command_default(args.profile)
         elif args.command == "update":

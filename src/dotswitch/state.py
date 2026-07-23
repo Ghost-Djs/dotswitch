@@ -41,3 +41,11 @@ def get_current_profile() -> str | None:
 
 def get_last_used_profile() -> str | None:
     return read_value(LAST_USED_PROFILE_FILE)
+
+
+def set_current_profile(profile: str) -> None:
+    write_value(CURRENT_PROFILE_FILE, profile)
+
+
+def set_last_used_profile(profile: str) -> None:
+    write_value(LAST_USED_PROFILE_FILE, profile)
