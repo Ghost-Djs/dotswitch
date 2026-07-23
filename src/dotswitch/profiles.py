@@ -8,10 +8,18 @@ from dotswitch.paths import PROFILES_DIR
 
 
 @dataclass(frozen=True)
+class ProfileSource:
+    type: str
+    path: Path | None = None
+    repo: str | None = None
+
+
+@dataclass(frozen=True)
 class Profile:
     id: str
     name: str
     path: Path
+    source: ProfileSource
     fallback: str | None = None
     experimental: bool = False
 
@@ -36,6 +44,30 @@ def load_profile(path: Path) -> Profile:
     if not isinstance(name, str) or not name.strip():
         raise ProfileError(f"{path}: missing or invalid 'name'")
 
+    source_data = data.get("source")
+
+    if not isinstance(source_data, dict):
+        raise ProfileError(f"{path}: missing or invalid '[source]' section")
+
+    source_type = source_data.get("type")
+    source_path = source_data.get("path")
+    source_repo = source_data.get("repo")
+
+    if not isinstance(source_type, str) or not source_type.strip():
+        raise ProfileError(f"{path}: missing or invalid 'source.type'")
+
+    if source_path is not None and not isinstance(source_path, str):
+        raise ProfileError(f"{path}: 'source.path' must be a string")
+
+    if source_repo is not None and not isinstance(source_repo, str):
+        raise ProfileError(f"{path}: 'source.repo' must be a string")
+
+    source = ProfileSource(
+        type=source_type,
+        path=Path(source_path).expanduser() if source_path else None,
+        repo=source_repo,
+    )
+
     fallback = data.get("fallback")
     experimental = data.get("experimental", False)
 
@@ -49,6 +81,7 @@ def load_profile(path: Path) -> Profile:
         id=profile_id,
         name=name,
         path=path,
+        source=source,
         fallback=fallback,
         experimental=experimental,
     )
