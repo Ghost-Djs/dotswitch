@@ -1414,8 +1414,8 @@ The project will begin with a focused and reliable Hyprland implementation befor
 
 ---
 
-## Licence
+## License
 
-dotswitch is planned to be released under the GNU General Public License v3.0.
+dotswitch is released under the [MIT License](./LICENSE).
 
-Third-party projects remain owned and licensed by their respective authors and contributors.
+Third-party projects, integrations and downloaded desktop setups remain owned and licensed by their respective authors and contributors. Their inclusion or mention does not transfer ownership to dotswitch.
