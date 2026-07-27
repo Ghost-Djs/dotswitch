@@ -1,16 +1,3 @@
-# dotswitch
-
-> [!WARNING]
-> **dotswitch is in early development and cannot safely switch real desktop configurations yet.**
->
-> The current implementation provides only the initial command-line, profile-loading and state-management foundation.
->
-> Transactional desktop switching, external profile installation, backups, rollback, fallback recovery, update management and the developer platform are still planned or under development.
->
-> **Do not use dotswitch to manage an important desktop configuration yet.**
->
-> Commands and workflows shown in this README may describe planned behaviour rather than functionality that is currently available.
-
 <p align="center">
   <h1 align="center">dotswitch</h1>
   <p align="center">
@@ -28,6 +15,17 @@
   <img alt="Focus" src="https://img.shields.io/badge/focus-Hyprland%20first-7c3aed">
   <img alt="Language" src="https://img.shields.io/badge/language-Python-3776AB">
 </p>
+
+> [!WARNING]
+> **dotswitch is in early development and cannot safely switch real desktop configurations yet.**
+>
+> The current implementation provides only the initial command-line, profile-loading and state-management foundation.
+>
+> Transactional desktop switching, external profile installation, backups, rollback, fallback recovery, update management and the developer platform are still planned or under development.
+>
+> **Do not use dotswitch to manage an important desktop configuration yet.**
+>
+> Commands and workflows shown in this README may describe planned behaviour rather than functionality that is currently available.
 
 ---
 
