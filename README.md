@@ -23,7 +23,7 @@
 
 <p align="center">
   <img alt="Status" src="https://img.shields.io/badge/status-early%20development-orange">
-  <img alt="License" src="https://img.shields.io/badge/license-GPL--3.0-blue">
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
   <img alt="Platform" src="https://img.shields.io/badge/platform-Linux-lightgrey">
   <img alt="Focus" src="https://img.shields.io/badge/focus-Hyprland%20first-7c3aed">
   <img alt="Language" src="https://img.shields.io/badge/language-Python-3776AB">
